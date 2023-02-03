@@ -1,4 +1,4 @@
-# Team Profile Generator
+# SQL Employee Management System
 
 ## [Demo](https://youtu.be/KHhrMFSqKq0)
 
