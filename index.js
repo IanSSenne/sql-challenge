@@ -7,6 +7,7 @@ const getConnection = require("./util/getConnection");
 const handlers = [
 	require("./subcommands/department"),
 	require("./subcommands/roles"),
+	require("./subcommands/employee"),
 ];
 
 async function dispatchCommand(targetId, commandType) {
