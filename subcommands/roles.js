@@ -19,7 +19,6 @@ async function addRole() {
 		departmentByName[department.name] = department.id;
 		departmentNames.push(department.name);
 	});
-	console.log(departments);
 	const { title, salary, department } = await inquirer.prompt([
 		{
 			type: "input",
