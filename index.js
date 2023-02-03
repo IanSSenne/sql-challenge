@@ -44,6 +44,11 @@ async function main() {
 		const targetType = optIndex >> 1;
 
 		await dispatchCommand(targetType, isAdd);
+		await inquirer.prompt({
+			type: "confirm",
+			message: "Press enter to continue",
+			name: "continue",
+		});
 	}
 }
 
