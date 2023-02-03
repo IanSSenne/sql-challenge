@@ -44,11 +44,13 @@ async function addRole() {
 		[title, salary, departmentId]
 	);
 	if (err) throw err;
-	console.table({
-		id: insertId,
-		title: title,
-		salary: salary,
-		department: department,
-	});
+	console.table([
+		{
+			id: insertId,
+			title: title,
+			salary: salary,
+			department: department,
+		},
+	]);
 }
 module.exports = [showRoles, addRole];

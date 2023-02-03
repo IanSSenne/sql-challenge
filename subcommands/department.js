@@ -21,6 +21,6 @@ async function addDepartment() {
 	);
 	if (err) throw err;
 
-	console.table({ id: insertId, name: name });
+	console.table([{ id: insertId, name: name }]);
 }
 module.exports = [showDepartments, addDepartment];

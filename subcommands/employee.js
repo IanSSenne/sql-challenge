@@ -19,7 +19,6 @@ async function addEmployee() {
 	let [employees] = await connection.execute(
 		'SELECT id,CONCAT(first_name," ",last_name) as name FROM employee'
 	);
-	console.log(employees);
 	const roleByName = {};
 	const roleNames = [];
 	const employeeByName = {};
@@ -68,12 +67,14 @@ async function addEmployee() {
 		[first_name, last_name, roleId, managerId]
 	);
 	if (err) throw err;
-	console.table({
-		id: insertId,
-		first_name: first_name,
-		last_name: last_name,
-		role: role,
-		manager: manager,
-	});
+	console.table([
+		{
+			id: insertId,
+			first_name: first_name,
+			last_name: last_name,
+			role: role,
+			manager: manager,
+		},
+	]);
 }
 module.exports = [showEmployees, addEmployee];
