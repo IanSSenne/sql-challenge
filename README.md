@@ -1,10 +1,16 @@
 # SQL Employee Management System
 
-## [Demo](https://youtu.be/KHhrMFSqKq0)
-
 ![License - Unlicense](https://img.shields.io/static/v1?label=License&message=Unlicense&color=blue&style=plastic)
 
+## [Demo](https://youtu.be/KHhrMFSqKq0)
+
+
+
+
 A command line application that can be used to manage a team of employees.
+
+![image](https://user-images.githubusercontent.com/48780301/216526199-483c86ce-bd7d-456b-86d6-3119f4e8d0b0.png)
+
 
 ## Table of Contents
 
