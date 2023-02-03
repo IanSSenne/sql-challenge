@@ -1,9 +1,5 @@
 require("dotenv").config();
 require("console.table");
-
-const mysql2 = require("mysql2/promise");
-const getConnection = require("./util/getConnection");
-
 const handlers = [
 	require("./subcommands/department"),
 	require("./subcommands/roles"),
