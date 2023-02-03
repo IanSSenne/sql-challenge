@@ -9,7 +9,7 @@ async function showDepartments() {
 
 async function addDepartment() {
 	const connection = await getConnection();
-	const inquirer = await (await import("inquirer")).default;
+	const inquirer = (await import("inquirer")).default;
 	const { name } = await inquirer.prompt({
 		type: "input",
 		name: "name",

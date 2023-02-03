@@ -4,7 +4,10 @@ require("console.table");
 const mysql2 = require("mysql2/promise");
 const getConnection = require("./util/getConnection");
 
-const handlers = [require("./subcommands/department")];
+const handlers = [
+	require("./subcommands/department"),
+	require("./subcommands/roles"),
+];
 
 async function dispatchCommand(targetId, commandType) {
 	const handler = handlers[targetId];
@@ -14,7 +17,7 @@ async function dispatchCommand(targetId, commandType) {
 }
 
 async function main() {
-	const inquirer = await (await import("inquirer")).default;
+	const inquirer = (await import("inquirer")).default;
 
 	const options = [
 		"View all departments.",
@@ -43,7 +46,6 @@ async function main() {
 		const isAdd = optIndex & 1;
 		const targetType = optIndex >> 1;
 
-		console.log(targetType, isAdd);
 		await dispatchCommand(targetType, isAdd);
 	}
 }
