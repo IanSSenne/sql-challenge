@@ -23,6 +23,7 @@ async function main() {
 		"Add a role.",
 		"View all employees.",
 		"Add an employee.",
+		"Update an employee's role.",
 		"exit the application.",
 	];
 
@@ -36,14 +37,19 @@ async function main() {
 
 		const optIndex = options.indexOf(action);
 		if (optIndex === 6) {
-			console.log("Goodbye!");
-			process.exit();
+			await dispatchCommand(2, 2);
+			continue;
+		} else {
+			if (optIndex === 7) {
+				console.log("Goodbye!");
+				process.exit();
+			}
+
+			const isAdd = optIndex & 1;
+			const targetType = optIndex >> 1;
+
+			await dispatchCommand(targetType, isAdd);
 		}
-
-		const isAdd = optIndex & 1;
-		const targetType = optIndex >> 1;
-
-		await dispatchCommand(targetType, isAdd);
 		await inquirer.prompt({
 			type: "confirm",
 			message: "Press enter to continue",

@@ -77,4 +77,53 @@ async function addEmployee() {
 		},
 	]);
 }
-module.exports = [showEmployees, addEmployee];
+
+async function updateEmployeeRole() {
+	const connection = await getConnection();
+	const inquirer = (await import("inquirer")).default;
+	const [roles] = await connection.execute("SELECT * FROM role");
+	const [employees] = await connection.execute(
+		'SELECT id,CONCAT(first_name," ",last_name) as name FROM employee'
+	);
+
+	const roleByName = {};
+	const roleNames = [];
+	const employeeByName = {};
+	const employeeNames = [];
+
+	roles.forEach((role) => {
+		roleByName[role.title] = role.id;
+		roleNames.push(role.title);
+	});
+
+	employees.forEach((employee) => {
+		employeeByName[employee.name] = employee.id;
+		employeeNames.push(employee.name);
+	});
+
+	const { employee, role } = await inquirer.prompt([
+		{
+			type: "list",
+			name: "employee",
+			message: "Which employee's role do you want to update?",
+			choices: employeeNames,
+		},
+		{
+			type: "list",
+			name: "role",
+			message: "What is the new role of the employee?",
+			choices: roleNames,
+		},
+	]);
+
+	const roleId = roleByName[role];
+	const employeeId = employeeByName[employee];
+
+	const [rows, err] = await connection.execute(
+		"UPDATE employee SET role_id = ? WHERE id = ?",
+		[roleId, employeeId]
+	);
+	if (err) throw err;
+}
+
+module.exports = [showEmployees, addEmployee, updateEmployeeRole];
